@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion : '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: A hello world application.
+Resources:
+  HelloFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: bin/hello
+      Runtime: go1.x
+      Events:
+        Vote:
+          Type: Api
+          Properties:
+            Path: /hello
+            Method: get
+  WorldFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: bin/world
+      Runtime: go1.x
+      Events:
+        Vote:
+          Type: Api
+          Properties:
+            Path: /world
+            Method: get

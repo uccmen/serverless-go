@@ -1,0 +1,27 @@
+service: serverless-go
+
+provider:
+  name: aws
+  runtime: go1.x
+  stage: ${env:AWS_STAGE, opt:stage}
+  region: ${env:AWS_REGION, opt:region}
+
+package:
+ exclude:
+   - ./**
+ include:
+   - ./bin/**
+
+functions:
+  hello:
+    handler: bin/hello
+    events:
+      - http:
+          path: hello
+          method: get
+  world:
+    handler: bin/world
+    events:
+      - http:
+          path: world
+          method: get
